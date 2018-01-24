@@ -24,7 +24,7 @@ def reformat_input(files, sep=" "):
     return outstr
 
 def make_call_cmd(iter_items, resource, type_script):
-    """iter_keys: list of string of inputs
+    """iter_keys: dict inputs
     resource: dict, resources for sbatch call
     """
     script_dict = dict(R="Rscript --vanilla", py="python", sh="bash")
