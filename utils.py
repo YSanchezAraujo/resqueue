@@ -7,19 +7,10 @@ sets of iterables, and well as sets of lists of iterables
 
 
 def reformat_input(files, sep=" "):
-    outstr = '"'
-
     if isinstance(files, str):
         files = files.split(" ")
-
-    for idx, f in enumerate(files):
-        if idx + 1 != len(files):
-            outstr += (f + sep)
-        else:
-            outstr += f
-    outstr += '"'
-
-    return outstr
+    out = sep.join(files)
+    return '"{}"'.format(out)
 
 
 def make_call_cmd(iter_items, resource, type_script):
