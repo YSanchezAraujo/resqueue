@@ -1,5 +1,9 @@
 import utils
 
+def main():
+    assert test_reformat_input() == 0
+    return None
+
 def test_reformat_input():
     """test function for the function "reformat_input"
     in the file utils.py, if all is good return will be
@@ -26,4 +30,4 @@ def test_reformat_input():
         return test_dict["case_two"]
     return 0
         
-    
+main()    
