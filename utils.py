@@ -30,6 +30,6 @@ def make_call_cmd(iter_items, resource, type_script):
         if key not in resource.keys():
             raise ValueError(
                 "resource dictionary should have the key: {}".format(key)
-        )
+            )
     scmd = " ".join(script_call + fmt_place_holders).format(**iter_items)
     return "\n".join(cmdstr + [scmd]).format(**resource)
