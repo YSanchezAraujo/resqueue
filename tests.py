@@ -29,5 +29,6 @@ def test_reformat_input():
                          test_dict["case_two"]["result"]))
         return test_dict["case_two"]
     return 0
-        
-main()    
+
+if __name__ == "__main__":        
+    main()    
