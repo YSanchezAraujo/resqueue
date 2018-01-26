@@ -1,4 +1,3 @@
-# will make functions to check slurm and job ids
 import subprocess
 
 def command(cmd, sep=" "):
@@ -13,3 +12,7 @@ def command(cmd, sep=" "):
     out, err = process.communicate()
     return out.decode("utf-8").split("\n")
    
+""" can use the above to check jobids, as a first use case, try
+to check your jobs and count how many you have running, will somehow
+have to limit it to only jobs queued up within slurm_handler
+"""
