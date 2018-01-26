@@ -13,12 +13,6 @@ def command(cmd, sep=" "):
     out, err = process.communicate()
     return out.decode("utf-8").split("\n")
 
-""" can use the above to check jobids, as a first use case, try
-to check your jobs and count how many you have running, will somehow
-have to limit it to only jobs queued up within slurm_handler
-Counter will be used later..
-"""
-
 def squeue_handle(piped_input):
     """piped_input: list, this is the output from the command function
     intended for squeue but maybe will be used for other commands
