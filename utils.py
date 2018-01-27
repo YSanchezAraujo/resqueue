@@ -1,3 +1,5 @@
+import os
+
 """
 next steps:
 figure out the plan for the iterator, have it be
@@ -11,20 +13,23 @@ def reformat_input(files, sep=" "):
     out = sep.join(files)
     return '"{}"'.format(out)
 
-def make_call_cmd(iter_items, resource, type_script):
+#TODO: add sbatch GPU resources
+def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
     resource: dict, resources for sbatch call
+    type_script: string, this will insert the command to
+    the program you want to run
     """
-    script_dict = dict(R="Rscript --vanilla", py="python", sh="bash")
-    if type_script not in script_dict.keys():
-        raise ValueError(
-            "type_script must be one of: {}".format(script_dict.keys())
-        )
-    script_call = [script_dict[type_script]]
+    if type_script is None:
+        print("WARNING, type_script is defaulting to bash"
+              ", consider using a particular program call"
+              " for example, type_script='python'")
+        type_script = "bash"
+    script_call = [type_script]
     fmt_place_holders = ["{{{}}}".format(key) for key in iter_items.keys()]
     cmdstr = [
-        "#!/bin/bash", "#SBATCH --mem={mem}G", "#SBATCH -c {cores}",
-        "#SBATCH --time={time}",
+        "#!/bin/bash\n", "#SBATCH --mem={mem}G", "#SBATCH -c {cores}",
+        "#SBATCH --time={time}\n",
     ]
     for key in ["mem", "cores", "time"]:
         if key not in resource.keys():
@@ -33,3 +38,12 @@ def make_call_cmd(iter_items, resource, type_script):
             )
     scmd = " ".join(script_call + fmt_place_holders).format(**iter_items)
     return "\n".join(cmdstr + [scmd]).format(**resource)
+
+
+def write(path, name, text):
+    write_file = os.path.join(path, name)
+    with open(write_file, "w") as writer:
+        writer.write(text)
+    return write_file
+
+
