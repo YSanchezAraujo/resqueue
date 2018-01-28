@@ -13,9 +13,10 @@ resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
 # however the keys for the inputs can be arbitrary
 call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
 
-"""the following will create the text that is written to file as an .sh file that
-the last item, 'bash' means I'm calling a bash script. That bash script is the item
-of call_items, and it's additionally taking in the parameter 3
+"""the following will create the text that is written to file as an .sh file, that
+the last input argument, 'bash' means I'm calling a bash script. And the bash script
+that is being called is the first item of the call_items dictionary,
+additionally taking in the parameter 3
 """
 cmd = make_call_cmd(call_items, resources, "bash")
 
