@@ -23,8 +23,13 @@ def slurm_handle(piped_input):
     if not piped_input[-1]:
         del piped_input[-1]
 
-
-"""
-one thing that I need to do is create unique IDs for jobs that I can check...
-
-"""
+def test_combine(cmd):
+    """cmd: slurm command to be executed
+    right now this is just a throw away function,
+    it won't be used later on just getting ideas
+    """
+    info = command(cmd)
+    slurm_handle(info)
+    njobs = len(info) - 1
+    return {"info":info, "njobs":njobs}
+    
