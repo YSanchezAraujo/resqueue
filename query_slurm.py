@@ -1,5 +1,4 @@
 import subprocess
-from collections import Counter
 
 def command(cmd, sep=" "):
     """cmd: string or list, the command you want to execute,
