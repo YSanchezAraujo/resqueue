@@ -10,7 +10,8 @@
 # here the shown keys are required
 resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
 
-# however the keys for the inputs can be arbitrary
+# however the keys for the inputs can be arbitrary, the first key and value pair
+# must be the information for the file you want to run
 call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
 
 """the following will create the text that is written to file as an .sh file, that
