@@ -95,7 +95,9 @@ class JobSubmitter(object):
             os.makedirs(write_dir)
             os.chdir(write_dir)
         else:
-            raise FileExistsError("{} exists".format(write_dir))
+            raise FileExistsError(
+                "{} exists".format(write_dir)
+            )
         file_path = os.path.join(write_dir, sbatch_name)
         with open(file_path, "w") as writing:
             writing.write(text)
