@@ -1,4 +1,4 @@
-# Design plan for this piece of software
+# example use case
 
 * users would need to create two dictionaries: 
     * one would hold resources
