@@ -92,7 +92,7 @@ class JobSubmitter(object):
 
     def _write(self, text):
         split_name = self.sbatch_name.split(".")
-        if split_name[-1] != ".sh":
+        if split_name[-1] != "sh":
             raise Exception(
                 "make sure that your file ends with .sh (e.g test.sh)"
             )
