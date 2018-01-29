@@ -1,4 +1,5 @@
 import os
+import time
 import subprocess
 import itertools
 
@@ -64,6 +65,7 @@ def command(cmd, sep=" "):
         cmd = cmd.split(sep)
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     out, err = process.communicate()
+    time.sleep(1)
     return out.decode("utf-8").split("\n")
 
 def slurm_handle(piped_input):
