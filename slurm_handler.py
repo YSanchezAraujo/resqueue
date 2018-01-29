@@ -91,7 +91,12 @@ class JobSubmitter(object):
         self.prog_type = prog_type
 
     def _write(self, text):
-        sbatch_dir_name = '_'.join([i for i in self.sbatch_name.split(".")[:-1]])
+        split_name = self.sbatch_name.split(".")
+        if split_name[-1] != ".sh":
+            raise Exception(
+                "make sure that your file ends with .sh (e.g test.sh)"
+            )
+        sbatch_dir_name = '_'.join([i for i in split_name[:-1]])
         write_dir = os.path.join(self.submit_dir, sbatch_dir_name)
         if not os.path.isdir(write_dir):
             os.makedirs(write_dir)
