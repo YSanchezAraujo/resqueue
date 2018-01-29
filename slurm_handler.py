@@ -101,6 +101,7 @@ class JobSubmitter(object):
         file_path = os.path.join(write_dir, sbatch_name)
         with open(file_path, "w") as writing:
             writing.write(text)
+        self.file_written = file_path
         return file_path  
 
     def run(self):
@@ -110,4 +111,3 @@ class JobSubmitter(object):
         slurm_handle(sbatch_res)
         return sbatch_res 
     
-

@@ -14,20 +14,16 @@ resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
 # must be the information for the file you want to run
 call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
 
-"""the following will create the text that is written to file as an .sh file, that
-the last input argument, 'bash' means I'm calling a bash script. And the bash script
-that is being called is the first item of the call_items dictionary,
-additionally taking in the parameter 3
-"""
-cmd = make_call_cmd(call_items, resources, "bash")
+# where you want to write the file to
+# and what the name of the sbatch file should be
+sbatch_name = "sbatch_test.sh"
+submit_dir = "/some/path/here"
 
-# now we write the file
-name = "sbatch_test.sh"
-path = "/some/path/here"
-file_written = write(path, name, cmd)
+# create the job submission object
+jobs = JobSubmitter(call_items, resources, submit_dir, sbatch_name, "bash")
 
-# finally we call sbatch on the file 
-out = command("sbatch {}".format(file_written))
+# submit the jobs
+res = jobs.run()
 ```
 
 **single file example with iterables**
