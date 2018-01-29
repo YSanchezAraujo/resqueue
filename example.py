@@ -41,12 +41,9 @@ only has 1 thing.
 
 the keys can be anything 
 """
+sbatch_name = "sbatch_test.sh"
+submit_dir = "/jukebox/daw/yoel/"
+resources = {"mem":2, "cores":2, "time":"0-00:01:00", "ngpu":0}
+call_items = {"script": "/mnt/bucket/people/yaraujjo/test.sh"}
 
-call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh"}
-# memory is in gigabytes
-resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
-cmd = make_call_cmd(call_items, resources, "bash")
-name = "sbatch_test.sh"
-path = "/mnt/bucket/people/yaraujjo/" 
-to_call = write(path, name, cmd)
-out = command("sbatch {}".format(to_call))
+jobs = JobSubmitter(call_items, resources, submit_dir, sbatch_name, "bash")
