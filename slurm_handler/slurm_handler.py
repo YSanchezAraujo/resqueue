@@ -137,7 +137,6 @@ class Iterator(object):
         self.iterables = iterables
 
     def run_each(self, iter_vals):
-        # there is an error here somewhere...
         jobsub = copy.deepcopy(self.jobsub)
         cur_dir_name = '_'.join(jobsub.sbatch_name.split(".")[:-1])
         iter_dir_name = cur_dir_name + "_{}_{}".format(*iter_vals)
@@ -146,8 +145,7 @@ class Iterator(object):
         for idx, key in enumerate(self.iterables.keys()):
             iter_dict[key] = iter_vals[idx]
         call_values = ' '.join(jobsub.call_items.values()).format(**iter_dict).split()
-        #call_values.insert(0, list(self.jobsub.call_items.values())[0])
-        print(call_values) 
+        print("submitting: {}".format(call_values))
         for idx, key in enumerate(jobsub.call_items.keys()):
             jobsub.call_items[key] = call_values[idx]
         jobsub.run() 
