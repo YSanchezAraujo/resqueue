@@ -29,3 +29,32 @@ res = jobs.run()
 ```
 
 **single file example with iterables**
+```python
+import numpy as np
+from slurm_handler import JobSubmitter
+from slurm_handler import Iterator
+
+# slurm resources to request per job
+resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+
+# template for what you script accepts, here test.sh takes in
+# seed and alpha arguments, and test.sh is the script that will be called
+call_items = {"key1": "/mnt/bucket/people/yaraujjo/test.sh",
+              "seeds": "{seed}","alpha": "{alpha}"}
+
+# values to iterate over per input argument that accepts them
+iterables = {"seed":np.arange(10, 13), "alpha": [2,3,4]}
+
+# name of the script to run
+sbatch_name = "sbatch_test.sh"
+
+# directory to hold the slurm file
+submit_dir = "/mnt/bucket/people/yaraujjo/"
+
+# create job submission object
+jobs = JobSubmitter(call_items, resources, submit_dir, sbatch_name, "bash")
+
+# create the iterator and pass in the job object plus your iterables
+jobs_iter = Iterator(jobs, iterables)
+jobs_iter.run()
+```
