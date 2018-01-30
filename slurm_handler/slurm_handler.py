@@ -142,7 +142,7 @@ class Iterator(object):
         for idx, key in enumerate(self.iterables.keys()):
             iter_dict[key] = iter_vals[idx]
         call_values = ' '.join(self.jobsub.call_items.values()).format(**iter_dict).split()
-        call_values.insert(0, self.jobsub.call_items.values()[0])
+        call_values.insert(0, list(self.jobsub.call_items.values())[0])
         for idx, key in enumerate(self.jobsub.call_items.keys()):
             self.jobsub.call_items[key] = call_values[idx]
         self.jobsub.run() 
