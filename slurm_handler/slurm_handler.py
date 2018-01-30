@@ -97,6 +97,10 @@ class JobSubmitter(object):
                 "make sure that your file ends with .sh (e.g test.sh)"
             )
         sbatch_dir_name = '_'.join([i for i in split_name[:-1]])
+        if "~" in self.submit_dir:
+            raise Exception(
+                "~ in place of the home path is not allowed please provide the full path"
+            )
         write_dir = os.path.join(self.submit_dir, sbatch_dir_name)
         if not os.path.isdir(write_dir):
             os.makedirs(write_dir)
