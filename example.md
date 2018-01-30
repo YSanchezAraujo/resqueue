@@ -7,6 +7,8 @@
 **single file example with no iterables**
 
 ```python
+from slurm_handler import JobSubmitter
+
 # here the shown keys are required
 resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
 
