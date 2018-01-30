@@ -1,2 +1,2 @@
 # init file
-from slurm_handler import JobSubmitter
+from slurm_handler import JobSubmiter
