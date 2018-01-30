@@ -125,7 +125,7 @@ class JobSubmitter(object):
         slurm_handle(sbatch_res)
         return sbatch_res 
 
-class Iterator(object)
+class Iterator(object):
     """ class to be used when the inputs to the computation file
     expects an iteration over them. The input to this class should be a
     JobSubmitter object
