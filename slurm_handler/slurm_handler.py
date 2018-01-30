@@ -83,7 +83,7 @@ class JobSubmitter(object):
     required information to do the work of creating files,
     submitting jobs, etc.
     """
-    def __init__(self, call_items, resources, submit_dir, sbatch_name, prog_type=None):
+    def __init__(self, call_items, resources, submit_dir, sbatch_name, prog_type=None, iter_dir=None):
         self.call_items = call_items
         self.resources = resources
         self.submit_dir = submit_dir
@@ -96,7 +96,10 @@ class JobSubmitter(object):
             raise Exception(
                 "make sure that your file ends with .sh (e.g test.sh)"
             )
-        sbatch_dir_name = '_'.join([i for i in split_name[:-1]])
+        if self.iter_dir is not None:
+            sbatch_dir_name = self.iter_dir
+        else:
+            sbatch_dir_name = '_'.join([i for i in split_name[:-1]])
         if "~" in self.submit_dir:
             raise Exception(
                 "~ in place of the home path is not allowed please provide the full path"
@@ -121,4 +124,31 @@ class JobSubmitter(object):
         sbatch_res = command("sbatch {}".format(file_written))
         slurm_handle(sbatch_res)
         return sbatch_res 
+
+class Iterator(object)
+    """ class to be used when the inputs to the computation file
+    expects an iteration over them. The input to this class should be a
+    JobSubmitter object
+    """
+    def __init__(self, jobsub, iterables):
+        self.jobsub = jobsub
+        self.iterables = iterables
+
+    def run_each(self, iter_vals):
+        cur_dir_name = '_'.join(self.jobsub.sbatch_name.split(".")[:-1])
+        iter_dir_name = cur_dir_name + "_{}_{}".format(*iter_vals)
+        self.jobsub.iter_dir = iter_dir_name
+        iter_dict = {}
+        for idx, key in enumerate(self.iterables.keys()):
+            iter_dict[key] = iter_vals[idx]
+        call_values = ' '.join(self.jobsub.call_items.values()).format(**iter_dict).split()
+        call_values.insert(0, self.jobsub.call_items.values[0])
+        for idx, key in enumerate(self.jobsub.call_items.keys()):
+            self.jobsub.call_items[key] = call_values[idx]
+        self.jobsub.run() 
     
+    def run(self):
+        product = iterable_product(iterables.values(), self.run_each)
+     
+
+
