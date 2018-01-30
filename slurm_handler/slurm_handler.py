@@ -148,7 +148,7 @@ class Iterator(object):
         self.jobsub.run() 
     
     def run(self):
-        product = iterable_product(iterables.values(), self.run_each)
+        product = iterate_product(iterables.values(), self.run_each)
      
 
 
