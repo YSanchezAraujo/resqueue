@@ -1,5 +1,6 @@
 import os
 import time
+import copy
 import subprocess
 import itertools
 
@@ -89,7 +90,7 @@ class JobSubmitter(object):
         self.submit_dir = submit_dir
         self.sbatch_name = sbatch_name
         self.prog_type = prog_type
-        self.initial_call_items = call_items
+        self.iter_dir = iter_dir
 
     def _write(self, text):
         split_name = self.sbatch_name.split(".")
@@ -137,19 +138,19 @@ class Iterator(object):
 
     def run_each(self, iter_vals):
         # there is an error here somewhere...
-        self.jobsub.call_items = self.jobsub.initial_call_items
-        cur_dir_name = '_'.join(self.jobsub.sbatch_name.split(".")[:-1])
+        jobsub = copy.deepcopy(self.jobsub)
+        cur_dir_name = '_'.join(jobsub.sbatch_name.split(".")[:-1])
         iter_dir_name = cur_dir_name + "_{}_{}".format(*iter_vals)
-        self.jobsub.iter_dir = iter_dir_name
+        jobsub.iter_dir = iter_dir_name
         iter_dict = {}
         for idx, key in enumerate(self.iterables.keys()):
             iter_dict[key] = iter_vals[idx]
-        call_values = ' '.join(self.jobsub.call_items.values()).format(**iter_dict).split()
+        call_values = ' '.join(jobsub.call_items.values()).format(**iter_dict).split()
         #call_values.insert(0, list(self.jobsub.call_items.values())[0])
         print(call_values) 
-        for idx, key in enumerate(self.jobsub.call_items.keys()):
-            self.jobsub.call_items[key] = call_values[idx]
-        self.jobsub.run() 
+        for idx, key in enumerate(jobsub.call_items.keys()):
+            jobsub.call_items[key] = call_values[idx]
+        jobsub.run() 
     
     def run(self):
         product = iterate_product(iterables.values(), self.run_each)
