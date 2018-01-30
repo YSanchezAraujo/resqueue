@@ -89,7 +89,7 @@ class JobSubmitter(object):
         self.submit_dir = submit_dir
         self.sbatch_name = sbatch_name
         self.prog_type = prog_type
-        self.intial_call_items = call_items
+        self.initial_call_items = call_items
 
     def _write(self, text):
         split_name = self.sbatch_name.split(".")
@@ -137,7 +137,7 @@ class Iterator(object):
 
     def run_each(self, iter_vals):
         # there is an error here somewhere...
-        self.jobsub.call_items = self.initial_call_items
+        self.jobsub.call_items = self.jobsub.initial_call_items
         cur_dir_name = '_'.join(self.jobsub.sbatch_name.split(".")[:-1])
         iter_dir_name = cur_dir_name + "_{}_{}".format(*iter_vals)
         self.jobsub.iter_dir = iter_dir_name
