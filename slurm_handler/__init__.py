@@ -1,2 +1,1 @@
-from __future__ import absolute_import
-from slurm_handler import *
+from slurm_handler.slurm_handler import JobSubmitter
