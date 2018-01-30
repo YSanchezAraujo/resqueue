@@ -137,6 +137,8 @@ class Iterator(object):
         self.iterables = iterables
 
     def run_each(self, iter_vals):
+        """iter_vals: a dict
+        """
         jobsub = copy.deepcopy(self.jobsub)
         cur_dir_name = '_'.join(jobsub.sbatch_name.split(".")[:-1])
         iter_dir_name = cur_dir_name + "_{}_{}".format(*iter_vals)
