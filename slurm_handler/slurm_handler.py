@@ -105,7 +105,7 @@ class JobSubmitter(object):
             raise FileExistsError(
                 "{} exists".format(write_dir)
             )
-        file_path = os.path.join(write_dir, sbatch_name)
+        file_path = os.path.join(write_dir, self.sbatch_name)
         with open(file_path, "w") as writing:
             writing.write(text)
         self.file_written = file_path
