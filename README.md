@@ -32,8 +32,7 @@ res = jobs.run()
 **single file example with iterables**
 ```python
 import numpy as np
-from slurm_handler import JobSubmitter
-from slurm_handler import Iterator
+from slurm_handler import JobSubmitter, Iterator
 
 # slurm resources to request per job
 resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
