@@ -3,6 +3,7 @@ import time
 import copy
 import subprocess
 import itertools
+from collections import OrderedDict
 
 def reformat_input(files, sep=" "):
     """files, a list of files or a string of many files
