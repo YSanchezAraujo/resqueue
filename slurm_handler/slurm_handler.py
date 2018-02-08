@@ -96,8 +96,8 @@ class JobSubmitter(object):
     submitting jobs, etc.
     """
     def __init__(self, call_items, resources, submit_dir, sbatch_name, prog_type=None, iter_dir=None):
-        self.call_items = call_items
-        self.resources = resources
+        self.call_items = make_dict(call_items) # this might break everything
+        self.resources = make_dict(resources)
         self.submit_dir = submit_dir
         self.sbatch_name = sbatch_name
         self.prog_type = prog_type
@@ -145,7 +145,7 @@ class Iterator(object):
     """
     def __init__(self, jobsub, iterables):
         self.jobsub = jobsub
-        self.iterables = iterables
+        self.iterables = make_dict(iterables) # also might break everything
 
     def run_each(self, iter_vals):
         """iter_vals: a dict
