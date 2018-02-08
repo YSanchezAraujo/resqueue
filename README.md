@@ -58,7 +58,7 @@ resources = [
 # template for what you script accepts, here test.sh takes in
 # seed and alpha arguments, and test.sh is the script that will be called
 #call_items = {"key1": "/mnt/bucket/people/yaraujjo/test.sh",
-              "seeds": "{seed}","alpha": "{alpha}"}
+#              "seeds": "{seed}","alpha": "{alpha}"}
 call_items = [
                  ("key_1", "/mnt/bucket/people/yaraujjo/test.sh"),
                  ("seeds", "{seed}"),
