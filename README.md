@@ -69,7 +69,7 @@ call_items = [
 #iterables = {"seed":np.arange(10, 13), "alpha": [2,3,4]}
 iterables = [
                  ("alpha", np.arange(10,13)),
-                 ("alpha", [2,3,4])
+                 ("beta", [2,3,4])
              ]
 
 # name of the script to run
