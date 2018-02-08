@@ -14,6 +14,16 @@ def reformat_input(files, sep=" "):
     out = sep.join(files)
     return '"{}"'.format(out)
 
+def make_dict(collection):
+    """collection: list of tuples,
+    first item in each tuple will be the key and
+    second item in each tuple will be the value
+    """
+    store = OrderedDict()
+    for item in range(len(collection)):
+        store[collection[item][0]] = collection[item][1]
+    return store
+
 #TODO: add sbatch GPU resources
 def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
