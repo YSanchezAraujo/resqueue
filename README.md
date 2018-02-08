@@ -11,11 +11,22 @@
 from slurm_handler import JobSubmitter
 
 # here the shown keys are required
-resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+#resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+resources = [
+                 ("mem", 2),
+                 ("cores", 2),
+                 ("time", "0-00:01:00"),
+                 ("ngpu", 0)
+             ]
+
 
 # however the keys for the inputs can be arbitrary, the first key and value pair
 # must be the information for the file you want to run
-call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
+# call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
+call_items = [
+                 ("key_1", "/mnt/bucket/people/yaraujjo/test.sh"),
+                 ("any thing", 3)
+             ]
 
 # where you want to write the file to
 # and what the name of the sbatch file should be
@@ -35,15 +46,31 @@ import numpy as np
 from slurm_handler import JobSubmitter, Iterator
 
 # slurm resources to request per job
-resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+#resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+resources = [
+                 ("mem", 2),
+                 ("cores", 2),
+                 ("time", "0-00:01:00"),
+                 ("ngpu", 0)
+             ]
+
 
 # template for what you script accepts, here test.sh takes in
 # seed and alpha arguments, and test.sh is the script that will be called
-call_items = {"key1": "/mnt/bucket/people/yaraujjo/test.sh",
+#call_items = {"key1": "/mnt/bucket/people/yaraujjo/test.sh",
               "seeds": "{seed}","alpha": "{alpha}"}
+call_items = [
+                 ("key_1", "/mnt/bucket/people/yaraujjo/test.sh"),
+                 ("seeds", "{seed}"),
+                 ("alpha", "{alpha}")
+             ]
 
 # values to iterate over per input argument that accepts them
-iterables = {"seed":np.arange(10, 13), "alpha": [2,3,4]}
+#iterables = {"seed":np.arange(10, 13), "alpha": [2,3,4]}
+iterables = [
+                 ("alpha", np.arange(10,13)),
+                 ("alpha", [2,3,4])
+             ]
 
 # name of the script to run
 sbatch_name = "sbatch_test.sh"
