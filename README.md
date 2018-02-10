@@ -8,7 +8,7 @@
 **single file example with no iterables**
 
 ```python
-from slurm_handler import JobSubmitter
+from resqueue import JobSubmitter
 
 # here the shown keys are required
 #resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
@@ -43,7 +43,7 @@ res = jobs.run()
 **single file example with iterables**
 ```python
 import numpy as np
-from slurm_handler import JobSubmitter, Iterator
+from resqueue import JobSubmitter, Iterator
 
 # slurm resources to request per job
 #resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
