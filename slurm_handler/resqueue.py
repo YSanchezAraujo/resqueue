@@ -14,16 +14,6 @@ def reformat_input(files, sep=" "):
     out = sep.join(files)
     return '"{}"'.format(out)
 
-def make_dict(collection):
-    """collection: list of tuples,
-    first item in each tuple will be the key and
-    second item in each tuple will be the value
-    """
-    store = OrderedDict()
-    for item in range(len(collection)):
-        store[collection[item][0]] = collection[item][1]
-    return store
-
 #TODO: add sbatch GPU resources
 def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
@@ -96,8 +86,8 @@ class JobSubmitter(object):
     submitting jobs, etc.
     """
     def __init__(self, call_items, resources, submit_dir, sbatch_name, prog_type=None, iter_dir=None):
-        self.call_items = make_dict(call_items) # this might break everything
-        self.resources = make_dict(resources)
+        self.call_items = OrderedDict(call_items) # this might break everything
+        self.resources = OrderedDict(resources)
         self.submit_dir = submit_dir
         self.sbatch_name = sbatch_name
         self.prog_type = prog_type
@@ -145,7 +135,7 @@ class Iterator(object):
     """
     def __init__(self, jobsub, iterables):
         self.jobsub = jobsub
-        self.iterables = make_dict(iterables) # also might break everything
+        self.iterables = OrderedDict(iterables) # also might break everything
 
     def run_each(self, iter_vals):
         """iter_vals: a dict
