@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name="slurm_handler",
-    packages = ["slurm_handler"],
+    name="resqueue",
+    packages = ["resqueue"],
     version="0.0.16",
-    description = "job submission in python using the slurm job manager", 
-    url="https://github.com/YSanchezAraujo/slurm_handler",
+    description = "job submission in python using job managers", 
+    url="https://github.com/YSanchezAraujo/resqueue",
     author="Yoel Sanchez Araujo",
     author_email="yoelsanchez006@gmail.com",
     download_url = "https://github.com/YSanchezAraujo/archive/0.0.16.tar.gz",
