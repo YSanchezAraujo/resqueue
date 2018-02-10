@@ -1,1 +1,1 @@
-from slurm_handler.slurm_handler import JobSubmitter, Iterator
+from resqueue.resqueue import JobSubmitter, Iterator
