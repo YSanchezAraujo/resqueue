@@ -1,4 +1,4 @@
-# slurm_handler
+# resqueue
 
 
 * users would need to create two dictionaries:
