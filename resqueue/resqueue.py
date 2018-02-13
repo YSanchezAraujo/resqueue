@@ -142,7 +142,8 @@ class Iterator(object):
         """
         jobsub = copy.deepcopy(self.jobsub)
         cur_dir_name = '_'.join(jobsub.sbatch_name.split(".")[:-1])
-        jobsub.iter_dir = cur_dir_name + "_{}_{}".format(*iter_vals)
+        fmt_holder = "{}_" * len(iter_vals.keys())
+        jobsub.iter_dir = cur_dir_name + fmt_holder.format(*iter_vals)
         iter_dict = {}
         for idx, key in enumerate(self.iterables.keys()):
             iter_dict[key] = iter_vals[idx]
