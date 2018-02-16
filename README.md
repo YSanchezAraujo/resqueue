@@ -1,7 +1,7 @@
 # resqueue
 
 
-## installation
+**installation**
 ```bash
 pip install resqueue
 ```
