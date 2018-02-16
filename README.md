@@ -1,6 +1,11 @@
 # resqueue
 
 
+## installation
+```bash
+pip install resqueue
+```
+
 * users would need to create two dictionaries:
     * one would hold resources
     * the other would hold the inputs to their programs
