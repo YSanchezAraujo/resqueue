@@ -5,15 +5,6 @@ import subprocess
 import itertools
 from collections import OrderedDict
 
-def reformat_input(files, sep=" "):
-    """files, a list of files or a string of many files
-    each seperated by a space
-    """
-    if isinstance(files, str):
-        files = files.split(" ")
-    out = sep.join(files)
-    return '"{}"'.format(out)
-
 #TODO: add sbatch GPU resources
 def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
