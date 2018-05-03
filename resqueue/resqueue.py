@@ -5,7 +5,6 @@ import subprocess
 import itertools
 from collections import OrderedDict
 
-#TODO: add sbatch GPU resources
 def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
     resource: dict, resources for sbatch call
@@ -77,7 +76,7 @@ class JobSubmitter(object):
     submitting jobs, etc.
     """
     def __init__(self, call_items, resources, submit_dir, sbatch_name, prog_type=None, iter_dir=None):
-        self.call_items = OrderedDict(call_items) # this might break everything
+        self.call_items = OrderedDict(call_items)
         self.resources = OrderedDict(resources)
         self.submit_dir = submit_dir
         self.sbatch_name = sbatch_name
@@ -126,7 +125,7 @@ class Iterator(object):
     """
     def __init__(self, jobsub, iterables):
         self.jobsub = jobsub
-        self.iterables = OrderedDict(iterables) # also might break everything
+        self.iterables = OrderedDict(iterables)
 
     def run_each(self, iter_vals):
         """iter_vals: a dict
