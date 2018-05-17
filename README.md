@@ -6,7 +6,7 @@
 pip install resqueue
 ```
 
-* users would need to create two dictionaries:
+* users would need to create two lists of tuples
     * one would hold resources
     * the other would hold the inputs to their programs
 
@@ -15,8 +15,6 @@ pip install resqueue
 ```python
 from resqueue import JobSubmitter
 
-# here the shown keys are required
-#resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
 resources = [
                  ("mem", 2),
                  ("cores", 2),
@@ -24,10 +22,6 @@ resources = [
                  ("ngpu", 0)
              ]
 
-
-# however the keys for the inputs can be arbitrary, the first key and value pair
-# must be the information for the file you want to run
-# call_items = {"key_1": "/mnt/bucket/people/yaraujjo/test.sh", "any thing": 3}
 call_items = [
                  ("key_1", "/mnt/bucket/people/yaraujjo/test.sh"),
                  ("any thing", 3)
@@ -51,7 +45,7 @@ import numpy as np
 from resqueue import JobSubmitter, Iterator
 
 # slurm resources to request per job
-#resources = {"mem":2, "cores":2, "time": "0-00:01:00", "ngpu":0}
+
 resources = [
                  ("mem", 2),
                  ("cores", 2),
@@ -62,8 +56,7 @@ resources = [
 
 # template for what you script accepts, here test.sh takes in
 # seed and alpha arguments, and test.sh is the script that will be called
-#call_items = {"key1": "/mnt/bucket/people/yaraujjo/test.sh",
-#              "seeds": "{seed}","alpha": "{alpha}"}
+
 call_items = [
                  ("key_1", "/mnt/bucket/people/yaraujjo/test.sh"),
                  ("seeds", "{seed}"),
@@ -71,7 +64,7 @@ call_items = [
              ]
 
 # values to iterate over per input argument that accepts them
-#iterables = {"seed":np.arange(10, 13), "alpha": [2,3,4]}
+
 iterables = [
                  ("seed", np.arange(10,13)),
                  ("alpha", [2,3,4])
