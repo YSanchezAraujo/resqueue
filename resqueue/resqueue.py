@@ -58,10 +58,9 @@ def command(cmd, sep=" "):
     """
     if isinstance(cmd, str):
         cmd = cmd.split(sep)
-    process = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    out, err = process.communicate()
+    ret_out = utils.shell(cmd)
     time.sleep(1)
-    return out.decode("utf-8").split("\n")
+    return ret_out
 
 def slurm_handle(piped_input):
     """piped_input: list, this is the output from the command function
