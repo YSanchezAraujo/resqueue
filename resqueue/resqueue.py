@@ -5,6 +5,9 @@ import subprocess
 import itertools
 from collections import OrderedDict
 
+from resqueue import matlab
+from resqueue import utils
+
 def make_call_cmd(iter_items, resource, type_script=None):
     """iter_items: dict
     resource: dict, resources for sbatch call
