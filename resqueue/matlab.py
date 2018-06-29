@@ -1,5 +1,6 @@
 import os
-import subprocess
+
+from resqueue import utils
 
 class Matlab(object):
     """ very preliminary, initial matlab class
@@ -39,9 +40,7 @@ class Matlab(object):
         self._mlabcmd()
         if os.getcwd() != os.path.dirname(self.edited_matfile):
             os.chdir(os.path.dirname(self.edited_matfile))
-        process = subprocess.Popen(self.cmd.split(), stdout=subprocess.PIPE)
-        out, err = process.communicate()
-        return out.decode("utf-8").split("\n")
+        return utils.shell(self.cmd.split())
 
 
 
