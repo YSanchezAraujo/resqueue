@@ -1,7 +1,6 @@
 import os
 import time
 import copy
-import subprocess
 import itertools
 from collections import OrderedDict
 
