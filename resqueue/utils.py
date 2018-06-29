@@ -1,4 +1,3 @@
-import os
 import subprocess
 
 def shell(cmd_split):
