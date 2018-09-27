@@ -58,7 +58,7 @@ def command(cmd, sep=" "):
     if isinstance(cmd, str):
         cmd = cmd.split(sep)
     ret_out = utils.shell(cmd)
-    time.sleep(1)
+    time.sleep(0.05)
     return ret_out
 
 def slurm_handle(piped_input):
